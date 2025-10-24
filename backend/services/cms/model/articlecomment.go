@@ -6,6 +6,8 @@
 
 package model
 
+import "gorm.io/gorm"
+
 type (
 	ArticleCommentModel interface{}
 
