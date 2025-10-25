@@ -29,6 +29,11 @@ type (
 		DeletedAt            *gorm.DeletedAt `json:"deleted_at"`                                                                // 删除时间
 	}
 
+	TreeMenu struct {
+		Menu
+		Children []*TreeMenu
+	}
+
 	defaultMenuModel struct {
 		db *gorm.DB
 	}
