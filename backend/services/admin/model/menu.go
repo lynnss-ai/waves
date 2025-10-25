@@ -8,8 +8,16 @@ package model
 
 import "gorm.io/gorm"
 
+const (
+	MenuTypeDir  MenuTypeEnum = iota + 1 // 目录
+	MenuTypeMenu                         // 菜单
+	MenuTypeBtn                          // 按钮
+)
+
 type (
 	MenuModel interface{}
+
+	MenuTypeEnum int
 
 	Menu struct {
 		ID                   string          `json:"id" gorm:"column:id;primaryKey;type:varchar(32)"`                           // ID
@@ -19,6 +27,7 @@ type (
 		MenuPath             string          `json:"menu_path" gorm:"column:menu_path;type:varchar(255)"`                       // 菜单路径
 		MenuComponent        string          `json:"menu_component" gorm:"column:menu_component;type:varchar(255)"`             // 菜单组件
 		MenuIcon             string          `json:"menu_icon" gorm:"column:menu_icon;type:varchar(255)"`                       // 菜单图标
+		MenuType             MenuTypeEnum    `json:"menu_type" gorm:"column:menu_type;type:int;not null"`                       // 菜单类型[0:目录,1:菜单,2:按钮]
 		IsHideInMenu         bool            `json:"is_hide_in_menu" gorm:"column:is_hide_in_menu;type:bool"`                   // 是否在菜单中隐藏[true:隐藏,false:显示]
 		IsHideChildrenInMenu bool            `json:"is_hide_children_in_menu" gorm:"column:is_hide_children_in_menu;type:bool"` // 是否在菜单中隐藏子菜单[true:隐藏,false:显示]
 		IsHideInBreadcrumb   bool            `json:"is_hide_in_breadcrumb" gorm:"column:is_hide_in_breadcrumb;type:bool"`       // 是否在面包屑中隐藏[true:隐藏,false:显示]
