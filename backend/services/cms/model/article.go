@@ -31,4 +31,8 @@ type (
 		UpdatedAt    int64           `json:"updated_at" gorm:"autoUpdateTime:milli"`                          // 更新时间
 		DeletedAt    *gorm.DeletedAt `json:"deleted_at"`                                                      // 删除时间
 	}
+
+	defaultArticleModel struct {
+		db *gorm.DB
+	}
 )

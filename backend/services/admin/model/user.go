@@ -21,10 +21,14 @@ type (
 		Email       string          `json:"email" gorm:"column:email;type:varchar(255);not null"`        // 邮箱
 		Password    string          `json:"password" gorm:"column:password;type:varchar(255)"`           // 密码
 		Salt        string          `json:"salt" gorm:"column:salt;type:varchar(64)"`                    // 盐值
-		IsChangePwd bool            `json:"is_change_pwd" gorm:"column:is_change_pwd;type:tinyint(1)"`   // 是否修改密码
+		IsChangePwd bool            `json:"is_change_pwd" gorm:"column:is_change_pwd;type:bool"`         // 是否修改密码[true:是,false:否]
 		LastLoginAt int64           `json:"last_login_at" gorm:"column:last_login_at;type:bigint"`       // 最后登录时间
 		CreatedAt   int64           `json:"created_at" gorm:"autoCreateTime:milli"`                      // 创建时间
 		UpdatedAt   int64           `json:"updated_at" gorm:"autoUpdateTime:milli"`                      // 更新时间
 		DeletedAt   *gorm.DeletedAt `json:"deleted_at"`                                                  // 删除时间
+	}
+
+	defaultUserModel struct {
+		db *gorm.DB
 	}
 )
